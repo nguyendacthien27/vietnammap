@@ -1,8 +1,8 @@
 'use client';
 import {useRouter, useSearchParams} from 'next/navigation';
-import {useEffect} from "react";
+import {Suspense, useEffect} from "react";
 
-export default function Verify() {
+function VerifyContent() {
     const searchParams = useSearchParams();
     const email = searchParams.get('email');
     const router = useRouter();
@@ -38,5 +38,13 @@ export default function Verify() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function Verify() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <VerifyContent/>
+        </Suspense>
     );
 }
