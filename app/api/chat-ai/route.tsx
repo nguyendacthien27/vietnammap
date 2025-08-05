@@ -14,6 +14,7 @@ export async function POST(req: Request) {
         const result = await generateText({model, prompt});
         return new Response(JSON.stringify({text: result.text}), {status: 200});
     } catch (error) {
+        console.error(error);
         return new Response(JSON.stringify({error: 'Failed to generate text'}), {status: 500});
     }
 }

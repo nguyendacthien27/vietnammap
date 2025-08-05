@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
         jwt.verify(cookie, process.env.JWT_SECRET || 'secret');
         return NextResponse.json({authenticated: true});
     } catch (error) {
+        console.error(error);
         return NextResponse.json({authenticated: false});
     }
 }
